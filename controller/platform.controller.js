@@ -80,7 +80,7 @@ async function comparePassword(email, inputPassword) {
     if (!clientSnapshot.empty) {
       const clientDoc = clientSnapshot.docs[0].data();
       const clientHashedPassword = clientDoc.password;
-      const isClientPasswordValid = await bcrypt.compare(inputPassword, clientHashedPassword);
+      const isClientPasswordValid = inputPassword === clientHashedPassword;
       return isClientPasswordValid;
     }
 
@@ -92,7 +92,7 @@ async function comparePassword(email, inputPassword) {
     if (!adminSnapshot.empty) {
       const adminDoc = adminSnapshot.docs[0].data();
       const adminHashedPassword = adminDoc.password;
-      const isAdminPasswordValid = await bcrypt.compare(inputPassword, adminHashedPassword);
+      const isAdminPasswordValid = inputPassword === adminHashedPassword;
       return isAdminPasswordValid;
     }
 
